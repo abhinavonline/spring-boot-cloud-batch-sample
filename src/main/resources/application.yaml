@@ -1,0 +1,28 @@
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    password: #<Jasypt key used for decryption of sensitive values eg. tMgToyX8G947u2hCQxXY> Ref: https://github.com/ulisesbocchio/jasypt-spring-boot
+spring:
+  cloud:
+    gcp:
+      credentials:
+        location: #<GCP service account key file location (inside src/main/resources) for authorization eg. classpath:gcp-service-account-auth.json>. Use file:/sourcefolder/gcp-service-account-auth.json for external location
+cloud:
+  aws:
+    credentials:
+      accessKey: #<Source AWS S3 Bucket Access Key encrypted using Jasypt eg. ENC(JYo9+IrLj6B03BQ1xAiZoZ050M) >
+      secretKey: #<Source AWS S3 Secret Key encrypted using Jasypt eg. ENC(59UU/Q54e06dw8v6VlaV/bZHtIqNFppri) >
+    region:
+      static: #<Source AWS S3 Bucket Region eg.  us-east-1>
+    stack:
+      auto: false
+  batch:
+    source:
+      aws:
+        bucket: #<Source AWS S3 Bucket Name eg. aws-source-s3-bucket>
+        location: #<Source AWS S3 Bucket directory Name eg. /root/dir1/dir2>
+    destination:
+      gcs:
+        bucket: #<Destination GCS bucket Name eg. gcp-destination-bucket>
+        location:  #<Destination GCS directory Name eg. folder3>
